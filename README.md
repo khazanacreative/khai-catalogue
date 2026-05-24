@@ -1,20 +1,44 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Khai Catalogue
 
-# Run and deploy your AI Studio app
+Katalog resmi Khai Apparel. Aplikasi web modern berbasis React dan Vite untuk menampilkan katalog produk apparel, topi, kaos kaki, sandal, tas, dan jaket berkualitas tinggi, dengan integrasi pemesanan langsung melalui WhatsApp.
 
-This contains everything you need to run your app locally.
+## Fitur Utama
 
-View your app in AI Studio: https://ai.studio/apps/a14bb350-54b0-4669-ae98-8eda845b098e
+- **Katalog Produk Dinamis**: Menampilkan berbagai produk dari kategori yang berbeda secara rapi dan estetik.
+- **Integrasi Google Sheets**: Data produk dan artikel blog diambil secara dinamis menggunakan Google Sheets API untuk pengelolaan konten yang mudah tanpa memerlukan backend database yang rumit.
+- **Pemesanan WhatsApp Instan**: Klik tombol beli untuk langsung membuka percakapan WhatsApp dengan detail produk, ukuran, dan warna yang dipilih otomatis terisi dalam pesan template.
+- **Multi-bahasa & Tema**: Mendukung perpindahan bahasa (Indonesia & Inggris) serta mode gelap (Dark Mode) dan terang (Light Mode).
+- **Desain Responsif & Premium**: Layout modern yang responsif dan dioptimalkan untuk perangkat mobile dan desktop.
 
-## Run Locally
+## Cara Menjalankan secara Lokal
 
-**Prerequisites:**  Node.js
+### Prasyarat
+- [Node.js](https://nodejs.org/) (versi 18 atau lebih baru recommended)
+- `npm` atau `bun`
 
+### Langkah-langkah
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. **Instal Dependensi**:
+   ```bash
+   npm install
+   ```
+
+2. **Konfigurasi Environment**:
+   Salin file `.env.example` menjadi `.env.local` atau `.env` dan masukkan API Key yang sesuai:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Isi variabel-variabel berikut di dalam file `.env.local`:
+   - `GEMINI_API_KEY`: API Key dari Google AI Studio (jika diperlukan untuk fitur AI).
+   - `VITE_GOOGLE_SHEETS_API_KEY`: Google Sheets API Key.
+   - `VITE_SPREADSHEET_ID`: ID Google Spreadsheet sumber data katalog.
+
+3. **Jalankan Development Server**:
+   ```bash
+   npm run dev
+   ```
+   Aplikasi akan berjalan secara lokal di [http://localhost:3000](http://localhost:3000).
+
+## Deploy
+
+Proyek ini siap dideploy ke platform seperti **Vercel**, **Netlify**, atau platform hosting statis lainnya. Konfigurasi `vercel.json` telah disediakan untuk memastikan routing SPA React Router bekerja dengan baik (termasuk redirect/rewrite semua request ke `index.html`).
