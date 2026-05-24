@@ -35,7 +35,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-3 py-1.5 border border-primary/20 bg-primary/5 text-primary rounded-full text-xs font-mono tracking-widest uppercase"
             >
               <Flame className="w-3.5 h-3.5 text-primary animate-pulse" />
-              <span>KHAI APPAREL — EST. 2024</span>
+              <span>KHAI APPAREL — EST. 2017</span>
             </motion.div>
 
             <div className="space-y-4">
