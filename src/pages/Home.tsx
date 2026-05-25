@@ -208,43 +208,46 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {READY_PREVIEW.map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="group bg-background"
-              >
-                <Link to="/products" className="block">
-                  <div className="aspect-[4/5] bg-muted/40 overflow-hidden">
-                    {item.image ? (
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-serif italic text-3xl text-muted-foreground/40">
-                          {item.name.charAt(0)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5 space-y-1.5">
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                      {item.category}
-                    </p>
-                    <h3 className="text-sm font-medium group-hover:text-primary transition-colors">
-                      {item.name}
-                    </h3>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+            {READY_PREVIEW.map((item, i) => {
+              const slug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+              return (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                  className="group bg-background"
+                >
+                  <Link to={`/products/${slug}`} className="block">
+                    <div className="aspect-[4/5] bg-muted/40 overflow-hidden">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <span className="font-serif italic text-3xl text-muted-foreground/40">
+                            {item.name.charAt(0)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-5 space-y-1.5">
+                      <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        {item.category}
+                      </p>
+                      <h3 className="text-sm font-medium group-hover:text-primary transition-colors">
+                        {item.name}
+                      </h3>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

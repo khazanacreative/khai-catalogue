@@ -1,3 +1,5 @@
+import { CATALOG_ITEMS } from "@/src/data/catalogProducts";
+
 export interface Product {
   id: string;
   name: string;
@@ -134,7 +136,33 @@ export const productSheetsService = {
   async getProducts(category?: string): Promise<Product[]> {
     const sheets = category ? [category] : PRODUCT_SHEETS;
     const results = await Promise.all(sheets.map((s) => fetchSheet(s)));
-    return results.flat();
+    const products = results.flat();
+
+    if (products.length === 0) {
+      console.warn("All sheets empty or failed to load, falling back to local static catalog.");
+      const filteredStatic = category
+        ? CATALOG_ITEMS.filter((item) => item.category.toLowerCase() === category.toLowerCase())
+        : CATALOG_ITEMS;
+
+      return filteredStatic.map((item, index) => {
+        const slug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+        return {
+          id: `static-${index}`,
+          name: item.name,
+          slug: slug,
+          price: "150000", // Fallback price
+          description: item.descId,
+          image_url: item.image || "",
+          images: item.image ? [item.image] : [],
+          stock: item.status === "ready" ? "10" : "0",
+          category: item.category,
+          colors: item.category === "Apparel" || item.category === "Outerwear" ? ["Black", "White", "Navy"] : [],
+          sizes: item.category === "Apparel" || item.category === "Outerwear" ? ["S", "M", "L", "XL"] : [],
+          wa_number: "6282245767700"
+        };
+      });
+    }
+    return products;
   },
 
   async getProductBySlug(slug: string): Promise<Product | null> {
