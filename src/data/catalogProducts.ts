@@ -37,7 +37,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Navy", "Gray"],
     sizes: ["One Size"],
     stock: "15",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Kaos Kaki",
@@ -50,7 +50,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["White", "Black", "Gray"],
     sizes: ["One Size"],
     stock: "50",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Sandal Selop",
@@ -63,7 +63,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Brown"],
     sizes: ["39", "40", "41", "42", "43"],
     stock: "25",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Tas Sepatu",
@@ -76,7 +76,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Navy"],
     sizes: ["One Size"],
     stock: "30",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Jaket Vest",
@@ -89,7 +89,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Olive"],
     sizes: ["M", "L", "XL"],
     stock: "15",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Jaket Parasit",
@@ -102,7 +102,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Navy", "Black", "Red"],
     sizes: ["M", "L", "XL"],
     stock: "12",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
 
   // Coming soon
@@ -117,7 +117,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Red", "Blue"],
     sizes: ["S", "M", "L", "XL"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Kaos",
@@ -129,7 +129,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "White", "Navy"],
     sizes: ["S", "M", "L", "XL"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Celana Outdoor Panjang",
@@ -141,7 +141,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Dark Gray"],
     sizes: ["28", "30", "32", "34"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Celana Outdoor Pendek",
@@ -153,7 +153,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Black", "Olive", "Navy"],
     sizes: ["28", "30", "32", "34"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Jaket Parasit 1",
@@ -166,7 +166,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Emerald", "Black"],
     sizes: ["M", "L", "XL"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   },
   {
     name: "Jaket Parasit 2",
@@ -179,6 +179,6 @@ export const CATALOG_ITEMS: CatalogItem[] = [
     colors: ["Cream", "Navy"],
     sizes: ["M", "L", "XL"],
     stock: "0",
-    wa_number: "6282245767700"
+    wa_number: "6287878644521"
   }
 ];

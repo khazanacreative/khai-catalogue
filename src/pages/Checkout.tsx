@@ -6,7 +6,7 @@ import { Trash2, Plus, Minus, CreditCard, Wallet, Send, MessageCircle, ArrowLeft
 import { motion, AnimatePresence } from "motion/react";
 
 const SCRIPT_URL = import.meta.env.VITE_CHECKOUT_SCRIPT_URL || "";
-const DEFAULT_ADMIN_WA = "6282245767700";
+const DEFAULT_ADMIN_WA = "6287878644521";
 
 export default function Checkout() {
   const { cartItems, updateQuantity, removeFromCart, clearCart, cartTotal } = useCart();
@@ -173,7 +173,7 @@ export default function Checkout() {
             ) : (
               <div>
                 <p className="font-bold text-foreground">E-Wallet {paymentOption}</p>
-                <p className="font-mono text-sm text-primary mt-1">0822-4576-7700</p>
+                <p className="font-mono text-sm text-primary mt-1">0878-7864-4521</p>
                 <p className="mt-1">a/n PT Khai Apparel</p>
               </div>
             )}
@@ -382,7 +382,7 @@ export default function Checkout() {
                     <div>
                       <p>Lakukan transfer saldo ke akun E-Wallet berikut setelah checkout:</p>
                       <p className="font-bold text-foreground mt-2">{paymentOption} — PT Khai Apparel</p>
-                      <p className="font-mono text-sm text-primary mt-1">0822-4576-7700</p>
+                      <p className="font-mono text-sm text-primary mt-1">0878-7864-4521</p>
                     </div>
                   )}
                 </div>

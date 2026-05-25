@@ -279,7 +279,7 @@ export default function ProductDetail() {
               </button>
               
               <a
-                href={`https://api.whatsapp.com/send/?phone=${(product.wa_number || "6282245767700").replace(/[^0-9]/g, "")}&text=${encodeURIComponent(
+                href={`https://api.whatsapp.com/send/?phone=${(product.wa_number || "6287878644521").replace(/[^0-9]/g, "")}&text=${encodeURIComponent(
                   `Halo, saya tertarik dengan produk *${product.name}* (${formatPrice(product.price)})` +
                   (selectedColor ? `\nWarna: ${selectedColor}` : "") +
                   (selectedSize ? `\nUkuran: ${selectedSize}` : "")

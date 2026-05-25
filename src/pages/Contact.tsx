@@ -3,12 +3,12 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 
 const CONTACT_INFO = {
-  address: "Jl. Contoh Alamat No. 123, Kecamatan ABC, Kota XYZ, Jawa Timur 60000",
-  phone: "+62 822-4576-7700",
-  waNumber: "6282245767700",
+  address: "Natura Residences Cluster Springfield A5-11, Buduran, Sidoarjo, Jawa Timur, Indonesia 61252",
+  phone: "+62 878-7864-4521",
+  waNumber: "6287878644521",
   email: "hello@sheetcatalog.com",
   hours: { id: "Senin - Sabtu, 08:00 - 17:00 WIB", en: "Monday - Saturday, 08:00 - 17:00 WIB" },
-  mapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.6!2d112.75!3d-7.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMTYnNDguMCJTIDExMsKwNDUnMDAuMCJF!5e0!3m2!1sid!2sid!4v1600000000000",
+  mapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.2736173007323!2d112.7303038!3d-7.4349174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e6b840cf200d%3A0xeab50d4ff156a93b!2sNatura%20Residences!5e0!3m2!1sid!2sid!4v1700000000000",
 };
 
 export default function Contact() {

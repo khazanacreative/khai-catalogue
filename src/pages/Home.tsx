@@ -87,7 +87,7 @@ export default function Home() {
               </Link>
               
               <a
-                href="https://api.whatsapp.com/send/?phone=6282245767700&text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Khai%20Apparel"
+                href="https://api.whatsapp.com/send/?phone=6287878644521&text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Khai%20Apparel"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2.5 text-sm font-bold tracking-wider uppercase text-muted-foreground hover:text-foreground py-3 px-5 transition-colors border border-border/80 hover:border-foreground/40 rounded-lg bg-background/50 backdrop-blur-sm"
@@ -312,7 +312,7 @@ export default function Home() {
               : "Our team is ready to help via WhatsApp."}
           </p>
           <a
-            href="https://api.whatsapp.com/send/?phone=6282245767700&text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda"
+            href="https://api.whatsapp.com/send/?phone=6287878644521&text=Halo%2C%20saya%20tertarik%20dengan%20produk%20Anda"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm tracking-wider uppercase border-b border-foreground pb-1 hover:text-primary hover:border-primary transition-colors"
