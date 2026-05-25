@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { productSheetsService, Product } from "@/src/services/productSheets";
-import { Loader2, ArrowLeft, Tag, Package, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
-import { motion } from "motion/react";
+import { Loader2, ArrowLeft, Tag, Package, ChevronLeft, ChevronRight, MessageCircle, Plus, Minus, Check, ShoppingBag } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import MarkdownContent from "@/src/components/MarkdownContent";
 import { cn } from "@/src/lib/utils";
+import { useCart } from "@/src/contexts/CartContext";
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,7 +16,37 @@ export default function ProductDetail() {
   const [currentImage, setCurrentImage] = useState(0);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const { t } = useLanguage();
+  const [quantity, setQuantity] = useState(1);
+  const [showToast, setShowToast] = useState(false);
+  const { t, lang } = useLanguage();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    if (product.colors.length > 0 && !selectedColor) {
+      alert(lang === "id" ? "Silakan pilih warna terlebih dahulu!" : "Please select a color first!");
+      return;
+    }
+    if (product.sizes.length > 0 && !selectedSize) {
+      alert(lang === "id" ? "Silakan pilih ukuran terlebih dahulu!" : "Please select a size first!");
+      return;
+    }
+
+    addToCart({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      price: product.price,
+      image_url: product.image_url,
+      quantity,
+      selectedColor,
+      selectedSize,
+      wa_number: product.wa_number
+    });
+
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
 
   useEffect(() => {
     async function fetchProduct() {
@@ -211,22 +242,82 @@ export default function ProductDetail() {
               </div>
             )}
 
-            {/* WhatsApp Buy Button */}
-            <a
-              href={`https://api.whatsapp.com/send/?phone=${(product.wa_number || "6282245767700").replace(/[^0-9]/g, "")}&text=${encodeURIComponent(
-                `Halo, saya tertarik dengan produk *${product.name}* (${formatPrice(product.price)})` +
-                (selectedColor ? `\nWarna: ${selectedColor}` : "") +
-                (selectedSize ? `\nUkuran: ${selectedSize}` : "")
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-base uppercase tracking-wider"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Beli via WhatsApp
-            </a>
+            {/* Quantity Selector */}
+            <div className="space-y-2 pt-2">
+              <h3 className="font-bold text-sm uppercase tracking-wider text-muted-foreground">
+                Jumlah
+              </h3>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  className="p-2 border border-border rounded-lg hover:text-primary hover:border-primary transition-colors bg-background"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+                <span className="font-mono font-bold text-base w-8 text-center select-none">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity((q) => q + 1)}
+                  className="p-2 border border-border rounded-lg hover:text-primary hover:border-primary transition-colors bg-background"
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Order Buttons (Cart & WhatsApp) */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold py-3.5 px-6 rounded-lg hover:bg-primary/90 hover:scale-[1.01] transition-all text-base uppercase tracking-wider shadow-md shadow-primary/10"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                {lang === "id" ? "Tambah ke Keranjang" : "Add to Cart"}
+              </button>
+              
+              <a
+                href={`https://api.whatsapp.com/send/?phone=${(product.wa_number || "6282245767700").replace(/[^0-9]/g, "")}&text=${encodeURIComponent(
+                  `Halo, saya tertarik dengan produk *${product.name}* (${formatPrice(product.price)})` +
+                  (selectedColor ? `\nWarna: ${selectedColor}` : "") +
+                  (selectedSize ? `\nUkuran: ${selectedSize}` : "")
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-base uppercase tracking-wider"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Beli via WhatsApp
+              </a>
+            </div>
           </div>
         </div>
+
+        {/* Floating Toast Notification */}
+        <AnimatePresence>
+          {showToast && (
+            <motion.div
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.9 }}
+              className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-emerald-500 text-white font-sans px-5 py-4 rounded-xl shadow-2xl border border-emerald-400"
+            >
+              <div className="bg-white/20 p-1.5 rounded-full">
+                <Check className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <p className="font-bold text-sm">
+                  {lang === "id" ? "Berhasil Ditambahkan!" : "Successfully Added!"}
+                </p>
+                <p className="text-xs text-white/90 font-medium">
+                  {product.name} ({quantity}x)
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Description - Full Width Below */}
         <div className="mt-12 border-t border-border pt-8">

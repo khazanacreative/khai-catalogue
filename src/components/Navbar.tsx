@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/src/lib/utils";
 import { useTheme } from "@/src/contexts/ThemeContext";
 import { useLanguage } from "@/src/contexts/LanguageContext";
+import { useCart } from "@/src/contexts/CartContext";
 import khaiLogo from "@/src/assets/khai-logo.jpg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { lang, setLang, t } = useLanguage();
+  const { cartCount } = useCart();
 
   const navLinks = [
     { name: t.home, href: "/" },
@@ -57,6 +59,20 @@ export default function Navbar() {
               {lang === "id" ? "EN" : "ID"}
             </button>
 
+            {/* Cart Button */}
+            <Link
+              to="/checkout"
+              className="relative text-muted-foreground hover:text-primary transition-colors p-2 border border-border rounded flex items-center justify-center"
+              aria-label="View shopping cart"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[10px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center border border-background">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -75,6 +91,20 @@ export default function Navbar() {
             >
               {lang === "id" ? "EN" : "ID"}
             </button>
+            {/* Cart Button for mobile */}
+            <Link
+              to="/checkout"
+              className="relative text-muted-foreground hover:text-primary transition-colors p-2 flex items-center justify-center"
+              aria-label="View shopping cart"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center border border-background">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
             <button
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-primary transition-colors p-2"
