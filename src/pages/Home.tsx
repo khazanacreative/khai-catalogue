@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle, Flame } from "lucide-react";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { CATALOG_ITEMS } from "@/src/data/catalogProducts";
 import khaiLogo from "@/src/assets/khai-logo.jpg";
-import heroImage from "@/src/assets/hero-image.jpg";
+import heroSocks from "@/src/assets/product-socks.webp";
 import heroCap from "@/src/assets/product-cap-black.webp";
 import heroJersey from "@/src/assets/product-jersey.webp";
 
@@ -132,7 +132,7 @@ export default function Home() {
               className="relative w-[75%] aspect-[4/5] bg-muted/30 rounded-2xl overflow-hidden border border-border/80 shadow-2xl group"
             >
               <img
-                src={heroImage}
+                src={heroSocks}
                 alt="Khai Apparel Hero"
                 className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-700 hover:scale-105"
                 loading="eager"
