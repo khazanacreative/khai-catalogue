@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/src/contexts/CartContext";
 import { useLanguage } from "@/src/contexts/LanguageContext";
@@ -9,6 +9,15 @@ const SCRIPT_URL = import.meta.env.VITE_CHECKOUT_SCRIPT_URL || "";
 const DEFAULT_ADMIN_WA = "6287878644521";
 
 export default function Checkout() {
+  useEffect(() => {
+    console.log("=== CHECKOUT CONFIGURATION ===");
+    console.log("VITE_CHECKOUT_SCRIPT_URL active:", SCRIPT_URL ? "YES" : "NO");
+    if (SCRIPT_URL) {
+      console.log("URL:", SCRIPT_URL);
+    }
+    console.log("=============================");
+  }, []);
+
   const { cartItems, updateQuantity, removeFromCart, clearCart, cartTotal } = useCart();
   const { lang } = useLanguage();
   
@@ -55,7 +64,10 @@ export default function Checkout() {
       })
       .join("\n");
 
+    let generatedOrderId = "ORD-" + Math.floor(Math.random() * 900000 + 100000);
+
     const orderPayload = {
+      orderId: generatedOrderId,
       name: name.trim(),
       phone: phone.trim(),
       orderDetails: orderDetailsString,
@@ -63,8 +75,6 @@ export default function Checkout() {
       paymentMethod: `${paymentType === "bank" ? "Transfer Bank" : "E-Wallet"} - ${paymentOption}`,
       notes: notes.trim()
     };
-
-    let generatedOrderId = "ORD-" + Math.floor(Math.random() * 900000 + 100000);
     
     // Attempt sending to Google Sheets if Script URL is configured
     if (SCRIPT_URL) {
